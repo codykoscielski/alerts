@@ -50,3 +50,17 @@
             'active' => 0
         ]);
     });
+
+    test('API returns active alert', function() {
+        $alert = Alert::factory()->create(['active' => 1]);
+
+        $response = $this->get('/api/active-alert');
+        $response->assertJson([
+            'headline' => $alert->headline,
+            'description' => $alert->description,
+            'severity' => $alert->severity,
+            'author' => $alert->author,
+            'url_title' => $alert->url_title,
+            'url' => $alert->url,
+        ]);
+    });
