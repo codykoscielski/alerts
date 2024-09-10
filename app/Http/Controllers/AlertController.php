@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Alert;
 use Illuminate\Http\JsonResponse;
+use Illuminate\View\View;
+
 class AlertController extends Controller {
 
     public function index(): void {
@@ -19,5 +21,10 @@ class AlertController extends Controller {
 
         return response()->json(['message' => 'No active alerts'], 404);
 
+    }
+
+    public function showAllAlerts(): View {
+        $alerts = Alert::all()->where('active', 0)->sortByDesc('created_at');
+        return view('all-alerts', ['alerts' => $alerts]);
     }
 }

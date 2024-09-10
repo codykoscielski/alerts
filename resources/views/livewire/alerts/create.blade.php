@@ -11,7 +11,7 @@ new class extends Component {
     #[Validate('required', 'string')]
     public string $description = '';
     #[Validate('required', 'string')]
-    public string $severity = '';
+    public string $severity = 'info';
     #[Validate('string', 'max:255')]
     public string $url_title = '';
     #[Validate('string', 'max:255')]
