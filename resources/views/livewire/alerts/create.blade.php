@@ -33,7 +33,7 @@ new class extends Component {
         $this->url_title = '';
         $this->url = '';
 
-        return redirect(route('dashboard'));
+        return redirect(route('alerts'));
     }
 
 }; ?>

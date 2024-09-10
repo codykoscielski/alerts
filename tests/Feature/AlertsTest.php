@@ -9,7 +9,7 @@
 
     test('Show no alerts', function () {
         loginAsUser();
-        $response = $this->get('/dashboard');
+        $response = $this->get('/alerts');
         $response->assertSee('There are currently no alerts');
     });
 
@@ -63,4 +63,14 @@
             'url_title' => $alert->url_title,
             'url' => $alert->url,
         ]);
+    });
+
+    test('Show all alerts', function() {
+        loginAsUser();
+        $alerts = Alert::factory()->count(3)->create(['active' => 0]);
+
+        $response = $this->get('/all-alerts');
+        $response->assertSee($alerts[0]->headline);
+        $response->assertSee($alerts[1]->headline);
+        $response->assertSee($alerts[2]->headline);
     });

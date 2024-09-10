@@ -14,7 +14,7 @@
         public function delete(){
             $this->alert->update(['active' => 0]);
 
-            return $this->redirect(route('dashboard'));
+            return $this->redirect(route('alerts'));
         }
 
     }; ?>
